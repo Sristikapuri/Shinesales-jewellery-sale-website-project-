@@ -1,0 +1,84 @@
+.login-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fffaf0;
+  padding: 20px;
+}
+
+.login-container {
+  max-width: 880px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.243);
+  border-radius: 12px;
+  padding: 60px 40px;
+  box-shadow: 0 8px 24px rgba(179, 139, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  font-size: 36px;
+  font-weight: 700;
+  color: #b38b00;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.welcome-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #b38b00;
+  margin-bottom: 40px;
+  text-align: center;
+  width: 100%;
+}
+
+form input {
+  padding: 15px 18px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+  font-family: inherit;
+}
+
+form button {
+  padding: 16px 0;
+  background-color: #b38b00;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #ffd700;
+  color: #333;
+}
+
+.redirect {
+  margin-top: 28px;
+  font-size: 16px;
+  color: #555;
+  text-align: center;
+  width: 100%;
+}
+
+.redirect a {
+  color: #b38b00;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.redirect a:hover {
+  text-decoration: underline;
+}
