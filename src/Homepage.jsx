@@ -67,6 +67,7 @@ const Home = () => {
   </div>
   <nav>
     <Link to="/">Home</Link>
+    <Link to="/dashboard">Dashboard</Link>
     <Link to="/login">Login</Link>
     <Link to="/register">Register</Link>
   </nav>
@@ -96,9 +97,36 @@ const Home = () => {
           </div>
         ))}
       </section>
+      <footer className="homepage-footer-minimal">
+  <div className="footer-minimal-content" style={{flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start', gap: '40px', textAlign: 'left', maxWidth: '1200px', margin: '0 auto', padding: '20px 0'}}>
+    <div className="footer-minimal-brand" style={{minWidth: '200px'}}>
+      Shine Sales<br/>
+      <span style={{fontSize: '0.98em', color: '#b38b00b0'}}>Luxury Jewellery</span>
+    </div>
+    <div className="footer-minimal-section">
+      <div className="footer-minimal-title" style={{fontWeight: 'bold', marginBottom: '8px', color: '#b38b00'}}>CONTACT INFORMATION</div>
+      <div className="footer-minimal-contact">
+        <div>• Kathmandu, Dillibazar, Nepal</div>
+        <div>Email: <a href="mailto:shinesales@gmail.com" style={{color: '#b38b00'}}>shinesales@gmail.com</a></div>
+      </div>
+    </div>
+    <div className="footer-minimal-section">
+      <div className="footer-minimal-title" style={{fontWeight: 'bold', marginBottom: '8px', color: '#b38b00'}}>ABOUT</div>
+      <div className="footer-minimal-links" style={{flexDirection: 'column', alignItems: 'flex-start', gap: '4px'}}>
+        <a href="#about-us">About-Us</a>
+        <a href="#quality">Quality</a>
+        <a href="#why-us">Why Us?</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#blogs">Blogs</a>
+      </div>
+    </div>
+  </div>
+  <div className="footer-minimal-copy">
+    &copy; {new Date().getFullYear()} Shine Sales. All rights reserved.
+  </div>
+</footer>
     </div>
   );
 };
 
 export default Home;
-

@@ -1,16 +1,61 @@
+:root {
+  --gold: #d4af37;
+  --gold-dark: #bfa14a;
+  --silver: #c0c0c0;
+  --silver-dark: #a7a7ad;
+  --text-dark: #3a3e3a;
+  --text-light: #fff;
+}
+
+body, .home-page {
+  background: linear-gradient(135deg, var(--silver) 0%, #fffbe6 100%);
+  color: var(--text-dark);
+}
+.header, .navbar {
+  background-color: #ffffff !important;
+  color: var(--gold-dark);
+}
+.logo, .navbar-login, .navbar-left a, .header nav a {
+  color: var(--gold-dark) !important;
+}
+.header nav a:hover {
+  color: var(--gold) !important;
+}
+.shop-button, .buy-button {
+  background-color: var(--gold);
+  color: var(--text-light);
+  border: 1px solid var(--gold-dark);
+}
+.shop-button:hover, .buy-button:hover {
+  background-color: var(--silver-dark);
+  color: var(--gold-dark);
+  border: 1px solid var(--gold);
+}
+.discounted-price {
+  color: var(--gold);
+}
+.footer-minimal-brand, .footer-minimal-title, .footer-minimal-links a, .footer-minimal-contact, .footer-minimal-copy {
+  color: var(--gold-dark) !important;
+}
+.homepage-footer-minimal {
+  background: linear-gradient(90deg, var(--silver) 0%, #fffbe6 100%);
+  color: var(--gold-dark);
+  border-top: 1px solid var(--gold);
+}
 
 .home-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #fffaf0; 
+  background: linear-gradient(135deg, var(--silver) 0%, #fffbe6 100%);
+  color: var(--text-dark);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 0;
   margin: 0;
 }
 .header {
-  background-color: #fffffff3;
-  color: #333;
+  background-color: var(--silver);
+  color: var(--gold-dark);
   padding: 10px 10px;
   display: flex;
   justify-content: space-between;
@@ -32,6 +77,10 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
+  background-color: #f8b500;
+  color: var(--gold-dark);
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 
 .navbar-login {
@@ -47,7 +96,7 @@
   align-items: center;
   padding: 15px 30px;
   background-color: #f8b500;
-  color: #5a3e00ff;
+  color: var(--gold-dark);
   font-weight: 700;
   font-size: 1.1rem;
 }
@@ -63,7 +112,7 @@
 }
 
 .header nav a {
-  color: #5a3e00;
+  color: var(--gold-dark);
   text-decoration: none;
   margin-left: 20px;
   font-weight: 600;
@@ -71,7 +120,7 @@
 }
 
 .header nav a:hover {
-  color: #b38b00;
+  color: var(--gold);
 }
 
 
@@ -186,19 +235,20 @@
 }
 
 .shop-button {
-  background-color: #b38b00;
-  border: none;
+  background-color: var(--gold);
+  border: 1px solid var(--gold-dark);
   padding: 15px 40px;
   font-size: 1.2rem;
-  color: white;
+  color: var(--text-light);
   cursor: pointer;
   border-radius: 30px;
   transition: background-color 0.3s ease;
 }
 
 .shop-button:hover {
-  background-color: #ffd700;
-  color: #333;
+  background-color: var(--silver-dark);
+  color: var(--gold-dark);
+  border: 1px solid var(--gold);
 }
 
 
@@ -246,7 +296,7 @@
 .discounted-price {
   font-size: 1.15rem;
   font-weight: 700;
-  color: #b38b00;
+  color: var(--gold);
   margin-bottom: 4px;
 }
 
@@ -262,9 +312,9 @@
 }
 
 .buy-button {
-  background-color: #b38b00;
-  color: white;
-  border: none;
+  background-color: var(--gold);
+  color: var(--text-light);
+  border: 1px solid var(--gold-dark);
   padding: 10px 30px;
   font-weight: 700;
   border-radius: 25px;
@@ -275,6 +325,168 @@
 }
 
 .buy-button:hover {
-  background-color: #ffd700;
-  color: #333;
+  background-color: var(--silver-dark);
+  color: var(--gold-dark);
+  border: 1px solid var(--gold);
+}
+
+
+.homepage-footer-minimal {
+  width: 100%;
+  background: linear-gradient(90deg, var(--silver) 0%, #fffbe6 100%);
+  color: var(--gold-dark);
+  font-family: 'Playfair Display', 'Segoe UI', serif;
+  font-size: 1rem;
+  border-top: 1px solid var(--gold);
+  padding: 10px 0 4px 0;
+  text-align: center;
+  margin-top: 40px;
+}
+.footer-minimal-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  margin-bottom: 2px;
+}
+.footer-minimal-brand {
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: var(--gold-dark);
+}
+.footer-minimal-links {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.footer-minimal-links a {
+  color: var(--gold-dark);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.footer-minimal-links a:hover {
+  color: #7d5700;
+  text-decoration: underline;
+}
+.footer-minimal-divider {
+  color: var(--gold-dark);
+  font-size: 1.1em;
+  margin: 0 6px;
+}
+.footer-minimal-contact {
+  color: var(--gold-dark);
+  font-size: 0.98em;
+}
+.footer-minimal-copy {
+  font-size: 0.92em;
+  color: #b38b00b0;
+  margin-top: 2px;
+}
+@media (max-width: 600px) {
+  .footer-minimal-content {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.95em;
+  }
+  .homepage-footer-minimal {
+    font-size: 0.95em;
+    padding: 8px 0 2px 0;
+  }
+}
+
+/* Luxury, minimal homepage footer with three sections */
+.homepage-footer-luxury {
+  width: 100%;
+  background: #fffbe6;
+  color: #b38b00;
+  font-family: 'Playfair Display', 'Segoe UI', serif;
+  font-size: 1rem;
+  border-top: 1px solid #e5c97b;
+  padding: 32px 0 12px 0;
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 60px;
+}
+.footer-section {
+  min-width: 180px;
+  max-width: 260px;
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer-section-title {
+  font-weight: bold;
+  font-size: 1.08em;
+  letter-spacing: 1px;
+  color: #b38b00;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.footer-contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #7d5700;
+  font-size: 0.98em;
+  line-height: 1.7;
+}
+.footer-contact-list li {
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.footer-links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #7d5700;
+  font-size: 0.98em;
+  line-height: 1.7;
+}
+.footer-links-list li {
+  margin-bottom: 2px;
+}
+.footer-links-list a {
+  color: #b38b00;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.footer-links-list a:hover {
+  color: #7d5700;
+  text-decoration: underline;
+}
+.footer-about {
+  color: #7d5700;
+  font-size: 0.98em;
+  line-height: 1.7;
+}
+.footer-luxury-copy {
+  width: 100%;
+  text-align: center;
+  font-size: 0.92em;
+  color: #b38b00b0;
+  margin-top: 18px;
+  margin-bottom: 2px;
+}
+@media (max-width: 900px) {
+  .homepage-footer-luxury {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    padding: 24px 0 8px 0;
+  }
+  .footer-section {
+    max-width: 100%;
+    min-width: 0;
+    width: 90%;
+    align-items: flex-start;
+  }
 }
