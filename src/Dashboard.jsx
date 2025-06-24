@@ -7,9 +7,10 @@ const ordersIcon = 'https://cdn-icons-png.flaticon.com/512/3500/3500833.png';
 const customersIcon = 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png';
 const bgImage = 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1500&q=80';
 const userAvatars = {
-  'Sita Shrestha': 'https://randomuser.me/api/portraits/women/68.jpg',
-  'Maya Gurung': 'https://randomuser.me/api/portraits/women/65.jpg',
-  'Anju Lama': 'https://randomuser.me/api/portraits/women/43.jpg',
+  'Sita Shrestha': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgGAX_PfBf0NTZU0gbglUR5Jflgph7H2Ie5g&s', // Gold Jewellery
+  'Maya Gurung': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwR4FzYnAsLawQAjHXbGvq8ZKVVuamQL-EaQ&s', // Diamond Jewellery
+  'Anju Lama': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsi-XANXzam0TcoYiOSJV8-uBOCTqGHoQAJQ&s', // Ruby Jewellery
+  'Pearl Devi': 'https://www.hugetomato.com/cdn/shop/products/pearl_jewelry_set.jpg?v=1727693826', // Pearl Jewellery
 };
 const featuredProducts = [
   {
@@ -173,6 +174,14 @@ const Dashboard = () => {
               </td>
               <td>₹327,800</td>
               <td>Cancelled</td>
+            </tr>
+            <tr>
+              <td>#1004</td>
+              <td>
+                <img src={userAvatars['Pearl Devi']} alt="Pearl Devi" className="tq-user-avatar" /> Pearl Devi
+              </td>
+              <td>₹210,000</td>
+              <td>Delivered</td>
             </tr>
           </tbody>
         </table>
