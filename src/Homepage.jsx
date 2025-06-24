@@ -138,11 +138,11 @@ const Home = () => {
           <div className="footer-minimal-section">
             <div className="footer-minimal-title" style={{fontWeight: 'bold', marginBottom: '8px', color: '#b38b00'}}>ABOUT</div>
             <div className="footer-minimal-links" style={{flexDirection: 'column', alignItems: 'flex-start', gap: '4px'}}>
-              <a href="#about-us">About-Us</a>
-              <a href="#quality">Quality</a>
-              <a href="#why-us">Why Us?</a>
-              <a href="#testimonials">Testimonials</a>
-              <a href="#blogs">Blogs</a>
+              <Link to="/about-us">About-Us</Link>
+              <Link to="/quality">Quality</Link>
+              <Link to="/why-us">Why Us?</Link>
+              <Link to="/testimonials">Testimonials</Link>
+              <Link to="/blogs">Blogs</Link>
             </div>
           </div>
         </div>
