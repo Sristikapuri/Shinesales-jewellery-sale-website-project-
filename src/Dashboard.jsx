@@ -1,69 +1,72 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Dashboard.css';
+import { CartContext } from './App.jsx';
 
 const salesIcon = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
 const ordersIcon = 'https://cdn-icons-png.flaticon.com/512/3500/3500833.png';
 const customersIcon = 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png';
 const bgImage = 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1500&q=80';
 const userAvatars = {
-  'Sita Shrestha': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgGAX_PfBf0NTZU0gbglUR5Jflgph7H2Ie5g&s', // Gold Jewellery
-  'Maya Gurung': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwR4FzYnAsLawQAjHXbGvq8ZKVVuamQL-EaQ&s', // Diamond Jewellery
-  'Anju Lama': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsi-XANXzam0TcoYiOSJV8-uBOCTqGHoQAJQ&s', // Ruby Jewellery
-  'Pearl Devi': 'https://www.hugetomato.com/cdn/shop/products/pearl_jewelry_set.jpg?v=1727693826', // Pearl Jewellery
+  'Sita Shrestha': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgGAX_PfBf0NTZU0gbglUR5Jflgph7H2Ie5g&s',
+  'Maya Gurung': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwR4FzYnAsLawQAjHXbGvq8ZKVVuamQL-EaQ&s',
+  'Anju Lama': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsi-XANXzam0TcoYiOSJV8-uBOCTqGHoQAJQ&s',
+  'Pearl Devi': 'https://www.hugetomato.com/cdn/shop/products/pearl_jewelry_set.jpg?v=1727693826',
 };
 const featuredProducts = [
   {
     name: 'Diamond Necklace',
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfX7_SdUC4zQ7k4nRaGKS3qyL2xSklB7FG3g&s',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfX7_SdUC4zQ7k4nRaGKS3qyL2xSklB7FG3g&s',
     price: '₹755,000',
     type: 'Diamond',
   },
   {
     name: 'Gold Bangles',
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzFjjRMcKtFPhVzmeXjkM9deK1x42-T3UWWQ&s',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzFjjRMcKtFPhVzmeXjkM9deK1x42-T3UWWQ&s',
     price: '₹332,000',
     type: 'Gold',
   },
   {
     name: 'Pearl Earrings',
-    img: 'https://rukminim2.flixcart.com/image/850/1000/kza68i80/shopsy-earring/i/i/t/cn-0007-creeknest-original-imag6muscz29rngu.jpeg?q=90&crop=false',
+    image: 'https://rukminim2.flixcart.com/image/850/1000/kza68i80/shopsy-earring/i/i/t/cn-0007-creeknest-original-imag6muscz29rngu.jpeg?q=90&crop=false',
     price: '₹42,000',
     type: 'Pearl',
   },
   {
     name: 'Ruby Set',
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzXQTPWgJbAyjFg3ePlJ_S2wUlxeI4r9_d6w&s',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzXQTPWgJbAyjFg3ePlJ_S2wUlxeI4r9_d6w&s',
     price: '₹555,000',
     type: 'Ruby',
   },
   {
     name: 'Diamond Bracelet',
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtNN2rOh4h53eS-jPXKYAznQpTvLcTsfQOag&s',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtNN2rOh4h53eS-jPXKYAznQpTvLcTsfQOag&s',
     price: '₹240,000',
     type: 'Diamond',
   },
   {
     name: 'Gold Necklace',
-    img: 'https://static.wixstatic.com/media/b69f5d_b9f6e8c2bac64eb49856f2b4f1cf7c79~mv2.jpg/v1/fill/w_980,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/b69f5d_b9f6e8c2bac64eb49856f2b4f1cf7c79~mv2.jpg',
+    image: 'https://static.wixstatic.com/media/b69f5d_b9f6e8c2bac64eb49856f2b4f1cf7c79~mv2.jpg/v1/fill/w_980,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/b69f5d_b9f6e8c2bac64eb49856f2b4f1cf7c79~mv2.jpg',
     price: '₹422,000',
     type: 'Gold',
   },
   {
     name: 'Pearl Necklace',
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO1IQD8jmGiCaiWQdFG8Y-4RsRNZwBNDm1Gg&s',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO1IQD8jmGiCaiWQdFG8Y-4RsRNZwBNDm1Gg&s',
     price: '₹119,000',
     type: 'Pearl',
   },
   {
     name: 'Ruby Pendant',
-    img: 'https://www.orra.co.in/media/catalog/product/cache/8706a87b250cd4797f5bf599698c5c7a/o/p/ops23e11.jpg',
+    image: 'https://www.orra.co.in/media/catalog/product/cache/8706a87b250cd4797f5bf599698c5c7a/o/p/ops23e11.jpg',
     price: '₹228,000',
     type: 'Ruby',
   },
 ];
 
 const Dashboard = () => {
+  const { addToCart } = useContext(CartContext);
+
   return (
     <div className="tq-dashboard-page">
       <header className="tq-header">
@@ -111,10 +114,11 @@ const Dashboard = () => {
         <div className="tq-featured-grid">
           {featuredProducts.map((item, idx) => (
             <div className="tq-product-card" key={item.name+idx}>
-              <img src={item.img} alt={item.name} className="tq-product-img" />
+              <img src={item.image} alt={item.name} className="tq-product-img" />
               <div className="tq-product-info">
                 <h4>{item.name}</h4>
                 <p className="tq-product-price">{item.price}</p>
+                <button className="buy-button" onClick={() => addToCart(item)} style={{marginTop: 10}}>Add to Cart</button>
               </div>
             </div>
           ))}

@@ -490,3 +490,30 @@ body, .home-page {
     align-items: flex-start;
   }
 }
+
+/* Cart icon styles */
+.header nav .cart-icon {
+  margin-left: 24px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  filter: brightness(0) saturate(100%) invert(36%) sepia(97%) saturate(1200%) hue-rotate(7deg) brightness(0.85) contrast(1.4); /* darker gold color filter */
+  transition: filter 0.2s, transform 0.2s;
+}
+.header nav .cart-icon:hover {
+  filter: brightness(0) saturate(100%) invert(90%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(1.2) contrast(1.1); /* silver/white on hover */
+  transform: scale(1.1) rotate(-8deg);
+}
+.header nav .cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--gold-dark);
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 1px 4px #0002;
+}
