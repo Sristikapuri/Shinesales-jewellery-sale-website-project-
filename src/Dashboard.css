@@ -192,7 +192,7 @@ body, .tq-dashboard-page {
   z-index: 2;
 }
 .tq-hero-title {
-  font-size: 2.5rem;
+  font-size: 1.4rem;
   font-family: 'Playfair Display', serif;
   font-weight: 800;
   margin-bottom: 10px;
@@ -201,7 +201,7 @@ body, .tq-dashboard-page {
   text-shadow: 0 2px 12px #fff, 0 2px 12px #c0c0c0;
 }
 .tq-hero-subtitle {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   font-family: 'Poppins', serif;
   font-weight: 500;
   margin-bottom: 24px;
@@ -261,11 +261,13 @@ body, .tq-dashboard-page {
   transform: scale(1.08) rotate(-3deg);
   box-shadow: 0 8px 24px #bfa14acc;
 }
-
 .tq-featured-section {
-  background: #fff;
+  display: block; /* ensure section is visible */
+  visibility: visible;
+  opacity: 1;
   padding: 40px 0 30px 0;
   width: 100vw;
+  background: #fff; /* keep your original bg */
 }
 .tq-section-title {
   font-family: 'Playfair Display', serif;
@@ -277,10 +279,12 @@ body, .tq-dashboard-page {
   text-shadow: 0 2px 12px #fffbe6, 0 1px 4px #c0c0c0;
 }
 .tq-featured-grid {
-  display: flex;
+  display: flex !important; /* force flex display */
   flex-wrap: wrap;
   justify-content: center;
   gap: 28px;
+  visibility: visible;
+  opacity: 1;
 }
 .tq-product-card {
   background: linear-gradient(135deg, #fff 60%, #fffbe6 100%);
@@ -418,6 +422,7 @@ body, .tq-dashboard-page {
   gap: 16px;
   margin: 24px 0 0 0;
 }
+
 
 .tq-logo, .tq-navbar a, .tq-navbar-btn {
   color: var(--gold-dark) !important;

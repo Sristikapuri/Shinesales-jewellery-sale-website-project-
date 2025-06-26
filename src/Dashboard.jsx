@@ -64,6 +64,55 @@ const featuredProducts = [
   },
 ];
 
+const newArrivals = [
+  {
+    name: 'Gold Necklace',
+    image: 'https://static.wixstatic.com/media/b69f5d_b9f6e8c2bac64eb49856f2b4f1cf7c79~mv2.jpg/v1/fill/w_980,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/b69f5d_b9f6e8c2bac64eb49856f2b4f1cf7c79~mv2.jpg',
+    price: '₹422,000',
+    type: 'Gold',
+  },
+  {
+    name: 'Pearl Earrings',
+    image: 'https://rukminim2.flixcart.com/image/850/1000/kza68i80/shopsy-earring/i/i/t/cn-0007-creeknest-original-imag6muscz29rngu.jpeg?q=90&crop=false',
+    price: '₹42,000',
+    type: 'Pearl',
+  },
+  {
+    name: 'Diamond Set',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfX7_SdUC4zQ7k4nRaGKS3qyL2xSklB7FG3g&s',
+    price: '₹755,000',
+    type: 'Diamond',
+  },
+  {
+    name: 'Ruby Set',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzXQTPWgJbAyjFg3ePlJ_S2wUlxeI4r9_d6w&s',
+    price: '₹555,000',
+    type: 'Ruby',
+  },
+ 
+];
+const bestSellers = [
+  {
+    name: 'Diamond Stud Earrings',
+    image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80',
+    price: '₹320,000',
+    type: 'Diamond',
+  },
+  {
+    name: 'Gold Mangalsutra',
+    image: 'https://d25g9z9s77rn4i.cloudfront.net/uploads/product/1404/1716959769_706d607d02e40af669b5.png',
+    price: '₹150,000',
+    type: 'Gold',
+  },
+  {
+    name: 'Pearl Bracelet',
+    image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=400&q=80',
+    price: '₹60,000',
+    type: 'Pearl',
+  },
+];
+
+
 const Dashboard = () => {
   const { addToCart } = useContext(CartContext);
 
@@ -113,6 +162,38 @@ const Dashboard = () => {
         <h2 className="tq-section-title">Featured Jewellery</h2>
         <div className="tq-featured-grid">
           {featuredProducts.map((item, idx) => (
+            <div className="tq-product-card" key={item.name+idx}>
+              <img src={item.image} alt={item.name} className="tq-product-img" />
+              <div className="tq-product-info">
+                <h4>{item.name}</h4>
+                <p className="tq-product-price">{item.price}</p>
+                <button className="buy-button" onClick={() => addToCart(item)} style={{marginTop: 10}}>Add to Cart</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="tq-featured-section tq-dashboard-newarrivals">
+        <h2 className="tq-section-title">New Arrivals</h2>
+        <div className="tq-featured-grid">
+          {newArrivals.map((item, idx) => (
+            <div className="tq-product-card" key={item.name+idx}>
+              <img src={item.image} alt={item.name} className="tq-product-img" />
+              <div className="tq-product-info">
+                <h4>{item.name}</h4>
+                <p className="tq-product-price">{item.price}</p>
+                <button className="buy-button" onClick={() => addToCart(item)} style={{marginTop: 10}}>Add to Cart</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="tq-featured-section tq-dashboard-bestsellers">
+        <h2 className="tq-section-title">Best Sellers</h2>
+        <div className="tq-featured-grid">
+          {bestSellers.map((item, idx) => (
             <div className="tq-product-card" key={item.name+idx}>
               <img src={item.image} alt={item.name} className="tq-product-img" />
               <div className="tq-product-info">
