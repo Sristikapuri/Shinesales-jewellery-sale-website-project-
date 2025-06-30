@@ -11,20 +11,45 @@ const RegisterPage = () => {
   });
 
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setError('');
+    setSuccess('');
   };
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
-      return;
+  if (formData.password !== formData.confirmPassword) {
+    setError('Passwords do not match');
+    return;
+  }
+
+  try {
+    const response = await fetch('http://localhost:3000/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: formData.name,  // username matches backend
+        email: formData.email,
+        password: formData.password,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert(`Registered successfully! User ID: ${data.userId}`);
+      // Optionally redirect to login or homepage here
+    } else {
+      setError(data.error || 'Registration failed');
     }
-    alert(`Registered successfully!\nWelcome, ${formData.name}`);
-  };
+  } catch (err) {
+    setError('Network error');
+  }
+};
+
 
   return (
     <div className="register-wrapper">
@@ -71,6 +96,7 @@ const RegisterPage = () => {
             minLength={6}
           />
           {error && <p className="error-message">{error}</p>}
+          {success && <p className="success-message">{success}</p>}
           <button type="submit">Register</button>
         </form>
         <p className="redirect">
