@@ -18,38 +18,43 @@ const RegisterPage = () => {
     setError('');
     setSuccess('');
   };
-const handleSubmit = async (e) => {
-  e.preventDefault();
 
-  if (formData.password !== formData.confirmPassword) {
-    setError('Passwords do not match');
-    return;
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  try {
-    const response = await fetch('http://localhost:3000/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username: formData.name,  // username matches backend
-        email: formData.email,
-        password: formData.password,
-      }),
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      alert(`Registered successfully! User ID: ${data.userId}`);
-      // Optionally redirect to login or homepage here
-    } else {
-      setError(data.error || 'Registration failed');
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
+      return;
     }
-  } catch (err) {
-    setError('Network error');
-  }
-};
 
+    try {
+      const response = await fetch('http://localhost:3000/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: formData.name,  // matches backend model
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSuccess('Registered successfully! Please log in.');
+        setFormData({
+          name: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+        });
+      } else {
+        setError(data.error || 'Registration failed');
+      }
+    } catch (err) {
+      setError('Network error');
+    }
+  };
 
   return (
     <div className="register-wrapper">
