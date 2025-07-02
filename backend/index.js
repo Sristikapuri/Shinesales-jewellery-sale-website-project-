@@ -1,15 +1,14 @@
 // index.js
 import dotenv from 'dotenv';
 import { testConnection, sequelize } from './db.js';
-import { User } from './models/User.js'; // Ensure model is imported so Sequelize sees it
+import { User } from './models/User.js';
 import app from './app.js';
 
 dotenv.config();
 
-// DB init
 (async () => {
   await testConnection();
-  await sequelize.sync(); // Sync models to DB
+  await sequelize.sync({ alter: true });  // This updates your table structure
 })();
 
 const PORT = process.env.PORT || 3000;

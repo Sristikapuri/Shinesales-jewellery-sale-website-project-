@@ -3,9 +3,9 @@ import { User } from '../models/User.js';
 import { generateToken } from '../utils/jwtUtil.js';
 
 export const registerUser = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, address, dob } = req.body;
 
-  if (!username || !email || !password) {
+  if (!username || !email || !password || !address || !dob) {
     return res.status(400).json({ error: 'All fields are required' });
   }
 
@@ -15,11 +15,17 @@ export const registerUser = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = await User.create({ username, email, password: hashedPassword });
+    const user = await User.create({
+      username,
+      email,
+      password: hashedPassword,
+      address,
+      dob,
+    });
 
     res.status(201).json({ message: 'User registered', userId: user.id });
   } catch (err) {
-    console.error(err);
+    console.error('Registration error:', err);
     res.status(500).json({ error: 'Server error' });
   }
 };
@@ -29,24 +35,25 @@ export const loginUser = async (req, res) => {
 
   try {
     const user = await User.findOne({ where: { email } });
-
     if (!user) return res.status(400).json({ error: 'Invalid credentials' });
 
     const isMatch = await bcrypt.compare(password, user.password);
-
     if (!isMatch) return res.status(400).json({ error: 'Invalid credentials' });
 
     const token = generateToken({ id: user.id, email: user.email });
 
     res.json({ message: 'Login successful', token });
   } catch (err) {
+    console.error('Login error:', err);
     res.status(500).json({ error: 'Server error' });
   }
 };
 
 export const getCurrentUser = async (req, res) => {
   try {
-    const user = await User.findByPk(req.user.id, { attributes: ['id', 'username', 'email'] });
+    const user = await User.findByPk(req.user.id, {
+      attributes: ['id', 'username', 'email', 'address', 'dob'],
+    });
     res.json(user);
   } catch (err) {
     res.status(500).json({ error: 'Server error' });

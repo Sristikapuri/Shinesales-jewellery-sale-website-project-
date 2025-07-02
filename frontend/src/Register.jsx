@@ -8,12 +8,14 @@ const RegisterPage = () => {
     email: '',
     password: '',
     confirmPassword: '',
+    address: '',
+    dob: '',
   });
 
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setError('');
     setSuccess('');
@@ -32,9 +34,11 @@ const RegisterPage = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          username: formData.name,  // matches backend model
+          username: formData.name,
           email: formData.email,
           password: formData.password,
+          address: formData.address,
+          dob: formData.dob,
         }),
       });
 
@@ -47,6 +51,8 @@ const RegisterPage = () => {
           email: '',
           password: '',
           confirmPassword: '',
+          address: '',
+          dob: '',
         });
       } else {
         setError(data.error || 'Registration failed');
@@ -69,7 +75,6 @@ const RegisterPage = () => {
             required
             value={formData.name}
             onChange={handleChange}
-            autoComplete="name"
           />
           <input
             type="email"
@@ -78,27 +83,40 @@ const RegisterPage = () => {
             required
             value={formData.email}
             onChange={handleChange}
-            autoComplete="email"
           />
           <input
             type="password"
             name="password"
             placeholder="Password"
             required
+            minLength={6}
             value={formData.password}
             onChange={handleChange}
-            autoComplete="new-password"
-            minLength={6}
           />
           <input
             type="password"
             name="confirmPassword"
             placeholder="Confirm Password"
             required
+            minLength={6}
             value={formData.confirmPassword}
             onChange={handleChange}
-            autoComplete="new-password"
-            minLength={6}
+          />
+          <input
+            type="text"
+            name="address"
+            placeholder="Address"
+            required
+            value={formData.address}
+            onChange={handleChange}
+          />
+          <input
+            type="date"
+            name="dob"
+            placeholder="Date of Birth"
+            required
+            value={formData.dob}
+            onChange={handleChange}
           />
           {error && <p className="error-message">{error}</p>}
           {success && <p className="success-message">{success}</p>}

@@ -16,5 +16,14 @@ export const User = sequelize.define('User', {
   password: {
     type: DataTypes.STRING,
     allowNull: false
-  }
+  },
+  address: {
+    type: DataTypes.STRING,
+    allowNull: true  // allow null to avoid migration errors
+  },
+  dob: {
+  type: DataTypes.DATEONLY,
+  allowNull: true,
+}
+
 });

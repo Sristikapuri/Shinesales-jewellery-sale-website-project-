@@ -22,8 +22,8 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // Login success: navigate to homepage or dashboard
-        navigate('/');
+        localStorage.setItem('token', data.token); // 🔐 Save JWT token
+        navigate('/'); // ✅ Redirect on success
       } else {
         setError(data.error || 'Login failed');
       }
