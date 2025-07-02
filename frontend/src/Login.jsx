@@ -1,17 +1,35 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
-
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Dummy login logic, always successful
-    navigate('/');
+    setError('');
+
+    try {
+      const response = await fetch('http://localhost:3000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Login success: navigate to homepage or dashboard
+        navigate('/');
+      } else {
+        setError(data.error || 'Login failed');
+      }
+    } catch (err) {
+      setError('Network error');
+    }
   };
 
   return (
@@ -20,12 +38,25 @@ const Login = () => {
         <div className="logo">✨ SHINE SALES</div>
         <h1 className="welcome-title">Welcome Back</h1>
         <form onSubmit={handleSubmit}>
-          <input type="email" placeholder="Email Address" required value={email} onChange={e => setEmail(e.target.value)} />
-          <input type="password" placeholder="Password" required value={password} onChange={e => setPassword(e.target.value)} />
+          <input
+            type="email"
+            placeholder="Email Address"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {error && <p className="error-message">{error}</p>}
           <button type="submit">Log In</button>
         </form>
         <p className="redirect">
-          Don't have an account? <a href="/register">Register</a>
+          Don't have an account? <Link to="/register">Register</Link>
         </p>
       </div>
     </div>

@@ -1,34 +1,17 @@
+// app.js
 import express from 'express';
-import pg from 'pg';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import cors from 'cors';
+import authRoutes from './routes/authRoutes.js';
 
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 
-const pool = new pg.Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
+app.use('/api/auth', authRoutes);
+
+app.get('/', (req, res) => {
+  res.send('✅ Backend is running');
 });
 
-app.post('/register', async (req, res) => {
-  const { username, email, password } = req.body;
-  try {
-    const result = await pool.query(
-      'INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *',
-      [username, email, password]
-    );
-    res.status(201).json({ message: 'User registered', user: result.rows[0] });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Database error' });
-  }
-});
-
-app.listen(3000, () => {
-  console.log('Server running on http://localhost:3000');
-});
+export default app;
