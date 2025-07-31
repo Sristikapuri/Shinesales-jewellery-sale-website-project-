@@ -7,42 +7,42 @@ const CategoriesGrid = () => {
       name: "Rings",
       description: "Diamond, gold & engagement rings",
       items: "120+ styles",
-      image: "https://images.unsplash.com/photo-1615650612781-e4001bb88e48?w=400&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&h=300&fit=crop&crop=center",
       color: "from-[#FDEDE4] to-[#FFF7F0]"
     },
     {
       name: "Necklaces",
       description: "Elegant chains & pendants",
       items: "90+ styles",
-      image: "https://images.unsplash.com/photo-1622442266748-4bfa62b70846?w=400&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=300&fit=crop&crop=center",
       color: "from-[#FDF6F0] to-[#FCEDE6]"
     },
     {
       name: "Earrings",
       description: "Studs, hoops & drops",
       items: "150+ styles",
-      image: "https://images.unsplash.com/photo-1605276376003-c67fa8315f4d?w=400&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=400&h=300&fit=crop&crop=center",
       color: "from-[#FFF5EC] to-[#FCEFE4]"
     },
     {
       name: "Bracelets",
       description: "Gold, silver & beaded styles",
       items: "60+ styles",
-      image: "https://images.unsplash.com/photo-1622032668454-cf59d8a4f1e3?w=400&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=400&h=300&fit=crop&crop=center",
       color: "from-[#FBF2EE] to-[#FFF8F3]"
     },
     {
       name: "Bridal Sets",
       description: "Complete wedding collections",
       items: "25+ sets",
-      image: "https://images.unsplash.com/photo-1593720213428-28ab5c90e3cc?w=400&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&h=300&fit=crop&crop=center",
       color: "from-[#F3E8E2] to-[#FFF5F1]"
     },
     {
       name: "Anklets",
       description: "Delicate gold & silver anklets",
       items: "35+ styles",
-      image: "https://images.unsplash.com/photo-1593722348332-d5c2c486ee3a?w=400&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=300&fit=crop&crop=center",
       color: "from-[#FAF2EB] to-[#FFF9F5]"
     }
   ];
