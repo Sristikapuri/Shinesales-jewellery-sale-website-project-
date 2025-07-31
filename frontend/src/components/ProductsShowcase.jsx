@@ -10,7 +10,7 @@ const featuredProducts = [
     rating: 4.9,
     reviews: 254,
     image:
-      "https://images.unsplash.com/photo-1556228724-9d8e243ee3e8?w=300&h=300&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=300&h=300&fit=crop&crop=center",
     badge: "Gold",
     discount: "17% OFF",
     icon: <Gem className="h-5 w-5 text-yellow-500" />,
@@ -23,7 +23,7 @@ const featuredProducts = [
     rating: 5.0,
     reviews: 189,
     image:
-      "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=300&h=300&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=300&h=300&fit=crop&crop=center",
     badge: "Diamond",
     discount: "11% OFF",
     icon: <Gem className="h-5 w-5 text-blue-400" />,
@@ -36,7 +36,7 @@ const featuredProducts = [
     rating: 4.8,
     reviews: 320,
     image:
-      "https://images.unsplash.com/photo-1500336624523-d727130c3328?w=300&h=300&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=300&h=300&fit=crop&crop=center",
     badge: "Wedding",
     discount: null,
     icon: <Award className="h-5 w-5 text-yellow-600" />,
@@ -49,7 +49,7 @@ const featuredProducts = [
     rating: 4.7,
     reviews: 210,
     image:
-      "https://images.unsplash.com/photo-1520975690793-51f5f6d5472a?w=300&h=300&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=300&h=300&fit=crop&crop=center",
     badge: "Pearl",
     discount: "20% OFF",
     icon: <Gem className="h-5 w-5 text-white" />,
@@ -62,7 +62,7 @@ const featuredProducts = [
     rating: 4.9,
     reviews: 165,
     image:
-      "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=300&h=300&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1593720213428-28ab5c90e3cc?w=300&h=300&fit=crop&crop=center",
     badge: "Rose Gold",
     discount: null,
     icon: <Gem className="h-5 w-5 text-pink-400" />,
@@ -75,7 +75,7 @@ const featuredProducts = [
     rating: 4.6,
     reviews: 134,
     image:
-      "https://images.unsplash.com/photo-1501876725168-00c445821c9e?w=300&h=300&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1593722348332-d5c2c486ee3a?w=300&h=300&fit=crop&crop=center",
     badge: "Sapphire",
     discount: "15% OFF",
     icon: <Gem className="h-5 w-5 text-blue-700" />,
