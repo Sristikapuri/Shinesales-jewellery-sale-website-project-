@@ -1,41 +1,148 @@
-import React, { createContext, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Homepage from './Homepage.jsx';
-import Login from './Login.jsx';
-import Register from './Register.jsx';
-import Dashboard from './Dashboard.jsx';
-import AboutUs from './AboutUs.jsx';
-import Quality from './Quality.jsx';
-import WhyUs from './WhyUs.jsx';
-import Testimonials from './Testimonials.jsx';
-import Blogs from './Blogs.jsx';
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
+import AuthProvider from './contexts/AuthContext.jsx'
+import CartProvider from './contexts/CartContext.jsx'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import ProtectedRoute from './components/ProtectedRoute'
+import AdminRoute from './components/AdminRoute'
+import DailyGrocerLanding from './pages/JewelleryLanding.jsx'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Home from './pages/Home'
+import BuyerHome from './pages/BuyerHome'
+import Products from './pages/Products'
+import Cart from './pages/Cart'
+import Checkout from './pages/Checkout'
+import Orders from './pages/Orders'
+import OrderDetail from './pages/OrderDetail'
+import AdminHome from './pages/AdminHome'
+import AdminUsers from './pages/admin/AdminUsers'
+import AdminProducts from './pages/admin/AdminProducts'
+import AdminOrders from './pages/admin/AdminOrders'
 
-// Create Cart Context
-export const CartContext = createContext();
 
-const App = () => {
-  const [cart, setCart] = useState([]);
+const AppLayout = ({ children }) => {
+  const location = useLocation();
+  const isLandingPage = location.pathname === '/';
 
-  const addToCart = (product) => setCart((prev) => [...prev, product]);
-  const removeFromCart = (idx) => setCart((prev) => prev.filter((_, i) => i !== idx));
+  if (isLandingPage) {
+    return children;
+  }
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Homepage />} /> {/* Homepage route */}
-          <Route path="/login" element={<Login />} /> {/* Login route */}
-          <Route path="/register" element={<Register />} /> {/* Register route */}
-          <Route path="/dashboard" element={<Dashboard />} /> {/* Dashboard route */}
-          <Route path="/about-us" element={<AboutUs />} /> {/* About Us route */}
-          <Route path="/quality" element={<Quality />} /> {/* Quality route */}
-          <Route path="/why-us" element={<WhyUs />} /> {/* Why Us route */}
-          <Route path="/testimonials" element={<Testimonials />} /> {/* Testimonials route */}
-          <Route path="/blogs" element={<Blogs />} /> {/* Blogs route */}
-        </Routes>
-      </Router>
-    </CartContext.Provider>
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main className="flex-grow">
+        {children}
+      </main>
+      <Footer />
+    </div>
   );
 };
 
-export default App;
+const App = () => {
+  return (
+    <AuthProvider>
+      <CartProvider>
+        <Router>
+          <AppLayout>
+            <Toaster position="top-right" />
+            <Routes>
+              <Route path="/" element={<DailyGrocerLanding />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              
+              {/* Protected Routes for Users */}
+              <Route path="/home" element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              } />
+              <Route path="/buyer/home" element={
+                <ProtectedRoute>
+                  <BuyerHome />
+                </ProtectedRoute>
+              } />
+              <Route path="/products" element={
+                <ProtectedRoute>
+                  <Products />
+                </ProtectedRoute>
+              } />
+              <Route path="/cart" element={
+                <ProtectedRoute>
+                  <Cart />
+                </ProtectedRoute>
+              } />
+              <Route path="/checkout" element={
+                <ProtectedRoute>
+                  <Checkout />
+                </ProtectedRoute>
+              } />
+              <Route path="/orders" element={
+                <ProtectedRoute>
+                  <Orders />
+                </ProtectedRoute>
+              } />
+              <Route path="/orders/:id" element={
+                <ProtectedRoute>
+                  <OrderDetail />
+                </ProtectedRoute>
+              } />
+              <Route path="/profile" element={
+                <ProtectedRoute>
+                  <div className="min-h-screen flex items-center justify-center">
+                    <div className="text-center">
+                      <h2 className="text-2xl font-bold text-gray-900 mb-4">Profile Page</h2>
+                      <p className="text-gray-600">Profile functionality coming soon!</p>
+                    </div>
+                  </div>
+                </ProtectedRoute>
+              } />
+              <Route path="/wishlist" element={
+                <ProtectedRoute>
+                  <div className="min-h-screen flex items-center justify-center">
+                    <div className="text-center">
+                      <h2 className="text-2xl font-bold text-gray-900 mb-4">Wishlist Page</h2>
+                      <p className="text-gray-600">Wishlist functionality coming soon!</p>
+                    </div>
+                  </div>
+                </ProtectedRoute>
+              } />
+              
+              {/* Admin Routes */}
+              <Route path="/admin/home" element={
+                <AdminRoute>
+                  <AdminHome />
+                </AdminRoute>
+              } />
+              <Route path="/admin/dashboard" element={
+                <AdminRoute>
+                  <AdminHome />
+                </AdminRoute>
+              } />
+              <Route path="/admin/users" element={
+                <AdminRoute>
+                  <AdminUsers />
+                </AdminRoute>
+              } />
+              <Route path="/admin/products" element={
+                <AdminRoute>
+                  <AdminProducts />
+                </AdminRoute>
+              } />
+              <Route path="/admin/orders" element={
+                <AdminRoute>
+                  <AdminOrders />
+                </AdminRoute>
+              } />
+            </Routes>
+          </AppLayout>
+        </Router>
+      </CartProvider>
+    </AuthProvider>
+  )
+}
+
+export default App

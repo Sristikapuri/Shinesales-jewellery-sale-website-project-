@@ -1,61 +1,109 @@
-import bcrypt from 'bcrypt';
-import { User } from '../models/User.js';
-import { generateToken } from '../utils/jwtUtil.js';
+const pool = require('../config/db');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
-export const registerUser = async (req, res) => {
-  const { username, email, password, address, dob } = req.body;
+const registerUser = async (req, res) => {
+  const { name, email, password, role } = req.body;
 
-  if (!username || !email || !password || !address || !dob) {
-    return res.status(400).json({ error: 'All fields are required' });
+  if (!name || !email || !password) {
+    return res.status(400).json({ message: 'All fields are required.' });
   }
 
   try {
-    const userExists = await User.findOne({ where: { email } });
-    if (userExists) return res.status(400).json({ error: 'User already exists' });
+    // Check if user exists
+    const userCheck = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    if (userCheck.rows.length > 0) {
+      return res.status(409).json({ message: 'Email already in use.' });
+    }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // Hash password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-    const user = await User.create({
-      username,
-      email,
-      password: hashedPassword,
-      address,
-      dob,
+    // Insert user
+    const newUser = await pool.query(
+      'INSERT INTO users (name, email, password, role) VALUES ($1, $2, $3, $4) RETURNING id, name, email, role',
+      [name, email, hashedPassword, role || 'customer']
+    );
+
+    res.status(201).json({
+      message: 'User registered successfully',
+      user: newUser.rows[0]
     });
 
-    res.status(201).json({ message: 'User registered', userId: user.id });
   } catch (err) {
-    console.error('Registration error:', err);
-    res.status(500).json({ error: 'Server error' });
+    console.error('Register Error:', err);
+    res.status(500).json({ message: 'Server error' });
   }
 };
 
-export const loginUser = async (req, res) => {
+const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
-  try {
-    const user = await User.findOne({ where: { email } });
-    if (!user) return res.status(400).json({ error: 'Invalid credentials' });
+  if (!email || !password) {
+    return res.status(400).json({ message: 'Email and password are required.' });
+  }
 
+  try {
+    // Find user
+    const userRes = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    if (userRes.rows.length === 0) {
+      return res.status(401).json({ message: 'Invalid email or password.' });
+    }
+    const user = userRes.rows[0];
+
+    // Check password
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ error: 'Invalid credentials' });
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Invalid email or password.' });
+    }
 
-    const token = generateToken({ id: user.id, email: user.email });
+    // Generate JWT
+    const token = jwt.sign(
+      { userId: user.id, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: '1d' }
+    );
 
-    res.json({ message: 'Login successful', token });
-  } catch (err) {
-    console.error('Login error:', err);
-    res.status(500).json({ error: 'Server error' });
-  }
-};
-
-export const getCurrentUser = async (req, res) => {
-  try {
-    const user = await User.findByPk(req.user.id, {
-      attributes: ['id', 'username', 'email', 'address', 'dob'],
+    res.json({
+      message: 'Login successful',
+      token,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+      }
     });
-    res.json(user);
+
   } catch (err) {
-    res.status(500).json({ error: 'Server error' });
+    console.error('Login Error:', err);
+    res.status(500).json({ message: 'Server error' });
   }
 };
+
+const getProfile = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    
+    const userRes = await pool.query(
+      'SELECT id, name, email, role, phone, created_at FROM users WHERE id = $1',
+      [userId]
+    );
+
+    if (userRes.rows.length === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json({
+      message: 'Profile retrieved successfully',
+      user: userRes.rows[0]
+    });
+
+  } catch (err) {
+    console.error('Get Profile Error:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+module.exports = { registerUser, loginUser, getProfile };
