@@ -68,7 +68,7 @@ const HeroSection = () => {
     <div className="bg-white rounded-2xl p-6 shadow-lg overflow-hidden">
       <div className="aspect-square rounded-xl overflow-hidden">
         <img 
-          src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" 
+          src="https://plus.unsplash.com/premium_photo-1681276170281-cf50a487a1b7?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
           alt="Diamond jewelry" 
           className="w-full h-full object-cover"
         />
