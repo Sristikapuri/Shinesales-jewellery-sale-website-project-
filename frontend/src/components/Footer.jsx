@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="space-y-7">
             <div>
               <h3 className="text-3xl font-extrabold mb-5 tracking-wide">
-                Shinesales<span className="text-[#D4AF37]">Jewelry</span>
+                Shinesales<span className="text-[#D4AF37]">Jewellery</span>
               </h3>
               <p className="leading-relaxed text-lg">
                 Crafting timeless elegance in every piece of gold and silver jewellery.
@@ -30,7 +30,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-4">
                 <MapPin className="h-6 w-6 text-[#D4AF37]" />
-                <span className="text-base">456 Elegant Ave, Jewelry City, JC 67890</span>
+                <span className="text-base">456 Elegant Ave, Jewellery City, JC 67890</span>
               </div>
             </div>
           </div>
@@ -106,7 +106,7 @@ const Footer = () => {
         <div className="border-t border-[#555555] py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-sm select-none text-[#999999]">
-              © 2025 Shinesales Jewellery. All rights reserved.
+              © 2025 Shinesales. All rights reserved.
             </div>
             <div className="flex space-x-8 text-sm text-[#999999]">
               <a href="#privacy" className="hover:text-[#D4AF37] transition-colors duration-300">Privacy Policy</a>
