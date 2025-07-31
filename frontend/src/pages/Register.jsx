@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Check } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Check, Phone, MapPin, Calendar } from 'lucide-react';
 import { AuthContext } from '../contexts/AuthContext.jsx';
 
 const Register = () => {
@@ -9,7 +9,10 @@ const Register = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    password: ''
+    password: '',
+    phone: '',
+    address: '',
+    date_of_birth: ''
   });
 
   const { register } = useContext(AuthContext);
@@ -28,12 +31,13 @@ const Register = () => {
     setLoading(true);
 
     try {
+      console.log('Sending registration data:', formData);
       const result = await register(formData);
       if (result.success) {
         alert('Registration successful!');
         const token = localStorage.getItem('token');
         if (token) {
-          const response = await fetch('http://localhost:5000/api/auth/profile', {
+          const response = await fetch('http://localhost:8080/api/auth/profile', {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'
@@ -70,7 +74,7 @@ const Register = () => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1618354691373-429982d6e2ef?auto=format&fit=crop&w=900&q=80')`
+            backgroundImage: `url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&h=1200&fit=crop&crop=center')`
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-[rgba(212,175,55,0.85)] to-[rgba(192,192,192,0.7)]"></div>
@@ -170,6 +174,59 @@ const Register = () => {
                   >
                     {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                   </button>
+                </div>
+              </div>
+
+              {/* Phone Number */}
+              <div>
+                <label htmlFor="phone" className="block text-sm font-semibold text-[#b8860b] mb-2">Phone Number</label>
+                <div className="relative">
+                  <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#d4af37] shadow-sm"
+                    placeholder="+1 (555) 123-4567"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Address */}
+              <div>
+                <label htmlFor="address" className="block text-sm font-semibold text-[#b8860b] mb-2">Address</label>
+                <div className="relative">
+                  <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                  <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleInputChange}
+                    className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#d4af37] shadow-sm"
+                    placeholder="123 Main St, City, State"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Date of Birth */}
+              <div>
+                <label htmlFor="dateOfBirth" className="block text-sm font-semibold text-[#b8860b] mb-2">Date of Birth</label>
+                <div className="relative">
+                  <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                  <input
+                    type="date"
+                    id="dateOfBirth"
+                    name="date_of_birth"
+                    value={formData.date_of_birth}
+                    onChange={handleInputChange}
+                    className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#d4af37] shadow-sm"
+                    required
+                  />
                 </div>
               </div>
 
