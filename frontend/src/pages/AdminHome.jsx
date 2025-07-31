@@ -122,7 +122,7 @@ const AdminHome = () => {
               </div>
               
               <p className="text-gray-200 text-lg mb-6">
-                Monitor your grocery delivery platform with real-time insights and comprehensive management tools.
+                Monitor your jewellery delivery platform with real-time insights and comprehensive management tools.
               </p>
 
               <div className="flex items-center space-x-4">
@@ -141,7 +141,7 @@ const AdminHome = () => {
         </div>
       </section>
 
-      {/* Key Metrics - DailyGrocer Style */}
+      {/* Key Metrics - JewellerySales Style */}
       <section className="py-12 -mt-8 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
