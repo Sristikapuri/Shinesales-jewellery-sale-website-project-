@@ -3,11 +3,14 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const registerUser = async (req, res) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password, phone, address, dateOfBirth, role } = req.body;
 
   if (!name || !email || !password) {
-    return res.status(400).json({ message: 'All fields are required.' });
+    return res.status(400).json({ message: 'Name, email, and password are required.' });
   }
+
+  // Log the received data for debugging
+  console.log('Registration data received:', req.body);
 
   try {
     // Check if user exists
@@ -20,10 +23,10 @@ const registerUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Insert user
+    // Insert user with optional fields
     const newUser = await pool.query(
-      'INSERT INTO users (name, email, password, role) VALUES ($1, $2, $3, $4) RETURNING id, name, email, role',
-      [name, email, hashedPassword, role || 'customer']
+      'INSERT INTO users (name, email, password, phone, address, date_of_birth, role) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id, name, email, phone, address, date_of_birth, role',
+      [name, email, hashedPassword, phone || null, address || null, dateOfBirth || null, role || 'customer']
     );
 
     res.status(201).json({
@@ -33,7 +36,7 @@ const registerUser = async (req, res) => {
 
   } catch (err) {
     console.error('Register Error:', err);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
 
@@ -87,7 +90,7 @@ const getProfile = async (req, res) => {
     const userId = req.user.userId;
     
     const userRes = await pool.query(
-      'SELECT id, name, email, role, phone, created_at FROM users WHERE id = $1',
+      'SELECT id, name, email, role, phone, address, date_of_birth, created_at FROM users WHERE id = $1',
       [userId]
     );
 
