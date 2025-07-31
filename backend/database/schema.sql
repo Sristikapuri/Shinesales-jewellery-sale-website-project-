@@ -1,13 +1,15 @@
--- DailyGrocer Database Schema
+-- ShineSales Database Schema
 
 -- Users table
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL, 
     role VARCHAR(20) DEFAULT 'customer' CHECK (role IN ('customer', 'admin')),
     phone VARCHAR(20),
+    address TEXT,
+    date_of_birth DATE,
     is_active BOOLEAN DEFAULT true,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -183,27 +185,25 @@ CREATE INDEX IF NOT EXISTS idx_reviews_approved ON product_reviews(is_approved);
 
 -- Insert default admin user (password: admin123)
 INSERT INTO users (name, email, password, role) VALUES 
-('Admin User', 'admin@dailygrocer.com', '$2b$10$rYvC/mMqk4FXp4PH3zGNOu8CZYePeFO1K7XqG4K4.kSZz2/J4Qk9.', 'admin')
+('Admin User', 'admin@gmail.com', '$2b$10$rYvC/mMqk4FXp4PH3zGNOu8CZYePeFO1K7XqG4K4.kSZz2/J4Qk9.', 'admin')
 ON CONFLICT (email) DO NOTHING;
 
 -- Insert sample categories
 INSERT INTO categories (name, description, image_url, parent_id) VALUES 
-('Fruits & Vegetables', 'Fresh fruits and vegetables', '/images/categories/fruits-vegetables.jpg', NULL),
-('Dairy & Eggs', 'Milk, cheese, yogurt and eggs', '/images/categories/dairy-eggs.jpg', NULL),
-('Meat & Seafood', 'Fresh meat and seafood', '/images/categories/meat-seafood.jpg', NULL),
-('Pantry', 'Rice, pulses, oil and spices', '/images/categories/pantry.jpg', NULL),
-('Beverages', 'Juices, soft drinks and water', '/images/categories/beverages.jpg', NULL),
-('Snacks', 'Chips, cookies and snacks', '/images/categories/snacks.jpg', NULL),
-('Personal Care', 'Health and beauty products', '/images/categories/personal-care.jpg', NULL),
-('Household', 'Cleaning and household items', '/images/categories/household.jpg', NULL)
+('Rings', 'test', 'test.jpg', NULL),
+('Necklaces', 'test', 'test.jpg', NULL),
+('Earrings', 'test', 'test.jpg', NULL),
+('Bracelets', 'test', 'test.jpg', NULL),
+('Anklets', 'test', 'test.jpg', NULL),
+('Body Jewelry', 'test', 'test.jpg', NULL),
 ON CONFLICT DO NOTHING;
 
 -- Insert subcategories
 INSERT INTO categories (name, description, parent_id) VALUES 
-('Fresh Fruits', 'Seasonal fresh fruits', 1),
-('Fresh Vegetables', 'Daily fresh vegetables', 1),
-('Organic', 'Organic fruits and vegetables', 1),
-('Milk', 'Fresh milk products', 2),
-('Cheese', 'Various cheese types', 2),
-('Yogurt', 'Fresh yogurt and curd', 2)
+('Rings', 'test', 1),
+('Necklaces', 'test', 1),
+('Earrings', 'test', 1),
+('Bracelets', 'test', 2),
+('Anklets', 'test', 2),
+('Body Jewelry', 'test', 2)
 ON CONFLICT DO NOTHING;
