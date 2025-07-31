@@ -60,7 +60,7 @@ const Login = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&h=1200&fit=crop&crop=center')`
+            backgroundImage: `url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&h=1200&fit=crop&crop=center')`
           }}
         >
           {/* Overlay */}
