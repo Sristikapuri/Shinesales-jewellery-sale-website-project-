@@ -41,45 +41,7 @@ const featuredProducts = [
     discount: null,
     icon: <Award className="h-5 w-5 text-yellow-600" />,
   },
-  {
-    id: 4,
-    name: "Pearl Necklace",
-    price: 199.99,
-    originalPrice: 249.99,
-    rating: 4.7,
-    reviews: 210,
-    image:
-      "https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=300&h=300&fit=crop&crop=center",
-    badge: "Pearl",
-    discount: "20% OFF",
-    icon: <Gem className="h-5 w-5 text-white" />,
-  },
-  {
-    id: 5,
-    name: "Rose Gold Ring",
-    price: 179.99,
-    originalPrice: null,
-    rating: 4.9,
-    reviews: 165,
-    image:
-      "https://images.unsplash.com/photo-1593720213428-28ab5c90e3cc?w=300&h=300&fit=crop&crop=center",
-    badge: "Rose Gold",
-    discount: null,
-    icon: <Gem className="h-5 w-5 text-pink-400" />,
-  },
-  {
-    id: 6,
-    name: "Sapphire Pendant",
-    price: 219.99,
-    originalPrice: 259.99,
-    rating: 4.6,
-    reviews: 134,
-    image:
-      "https://images.unsplash.com/photo-1593722348332-d5c2c486ee3a?w=300&h=300&fit=crop&crop=center",
-    badge: "Sapphire",
-    discount: "15% OFF",
-    icon: <Gem className="h-5 w-5 text-blue-700" />,
-  },
+  
 ];
 
 const ProductsShowcase = () => {
