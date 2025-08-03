@@ -598,7 +598,7 @@ const AdminProducts = () => {
                 value={productForm.tags}
                 onChange={handleInputChange}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B0DB9C]"
-                placeholder="organic, fresh, local"
+                placeholder="Diamond, Pure, Elegant"
               />
             </div>
 
